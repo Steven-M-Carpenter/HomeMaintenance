@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Walmart API</title>
+</head>
+
+<body>
+    <div id="productArea">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var queryURL = "https://cors.io/?http://api.walmartlabs.com/v1/search?apiKey=ncprrc5qq4kqukxgnpjn69b2&query=smoke detector"
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+
+            response = JSON.parse(response);
+
+            console.log(response);
+            console.log(response.items)
+            console.log(response.items[0].name)
+            console.log(response.items[0].shortDescription)
+            console.log(response.items[0].salePrice)
+            console.log(response.items[0].thumbnailImage)
+            console.log(response.items[0].addToCartUrl)    
+
+
+            var imageURL = response.items[0].thumbnailImage;
+            var productImage = $("<img>");
+            productImage.attr("src", imageURL);
+            productImage.attr("alt", "ProductImage");
+
+            var productName = $("<div>")
+            var responseArr = [];
+
+            for (var i = 0; i < response.items.length; i++) {
+                responseArr.push(response.items[i])
+        
+
+            }
+           
+            for (var i = 0; i < 4; i++) {
+                var bigdiv = $("#productArea");
+                var productDiv = $(`
+                    <div id="name">Name: ${response.items[i].name} </div>
+                    <div id="description">Description:-${response.items[i].shortDescription} </div>
+                    <div id="Price">Price:- ${response.items[i].salePrice}</div>
+                    <div id="imageArea${i}"><img src="${response.items[i].thumbnailImage}" alt = "Product Image"></div>
+                    <div><button id="addcart${i}" type="button">Add to Cart</button></div>
+                `)
+                //Appends the each groped product into the main DIV("#productArea")
+                bigdiv.append(productDiv);
+                var cartURL = responseArr[i].addToCartUrl;
+                document.getElementById("addcart" + i).onclick = function () {
+                    location.href = cartURL;
+                };
+            }
+
+        });
+    </script>
+</body>
+
+</html>

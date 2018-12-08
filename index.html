@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to Home Improvement</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple@3.1.1/dist/siimple.min.css">
+
+    <!-- Moment Library CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+
+    <!-- Shave library -->
+    <script src="./assets/javascript/shave.js"></script>
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+
+<body>
+
+    <body background="assets\img\woodpanel.jpg">
+
+        <div class="siimple-grid">
+            <div class="siimple-grid-row">
+                <div class="siimple-grid-col siimple-grid siimple-grid-col--4"><img src="assets\img\paint.jpg"></div>
+                <div class="siimple-grid-col siimple-grid siimple-grid-col--4"><img src="assets\img\home.jpg"></div>
+                <div class="siimple-grid-col siimple-grid siimple-grid-col--4"><img src="assets\img\decking.jpeg"></div>
+            </div>
+
+            <div class="siimple-box siimple-box--orange">
+                <div class="siimple-box-title">To-Do list:</div>
+                <div class="siimple-box-subtitle">Find your home selection below:</div>
+                <div class="siimple-box-detail">
+                </div>
+            </div>
+            
+            <!-- --------------------------------▼▼▼ Section 1 ▼▼▼----------------------------------------------- -->
+
+            <p id="WelcomeLine">Welcome! Please find your home or create one</p>
+            <hr>
+
+            <div id="SelectHouseDiv">
+                <p id="EnterPrompt">Select a saved property</p>
+                <select class="home" id="HomeDropDown">
+                </select>
+
+                <form>
+                    <input id="GoButton" type="submit" value="Go">
+                </form>
+            </div>
+
+            <span id="OrBlock">or</span>
+
+            <div id="AddHouseDiv">
+                <form id="FormEnterHome">
+                    <p id="EnterPrompt">Enter a new home here</p>
+                    <input type="text" name="" class="findHome" id="HomeInput"><br>
+                    <button type="button" class="createHome" id="AddHouseBtn">Create</button>
+                </form>
+            </div>
+
+            <!-- --------------------------------------▼▼▼ Section 2 ▼▼▼---------------------------------------- -->
+
+            <div class="siimple-grid">
+                <div class="siimple-grid-row">
+                    <div id="TaskRowGrid" class="siimple-grid-col siimple-grid-col--4">
+
+                        <div id="TaskHomeDiv">
+                            <h2 id="todoTask">Tasks To Do</h2>
+                            <hr>
+
+                            <table id="TaskTable">
+                            </table>
+
+                            <h2 id="doneTask">Tasks Completed</h2>
+                            <hr>
+
+                            <table id="DoneTable">
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="siimple-grid-col siimple-grid-col--4"></div>
+                    <div class="siimple-grid-col siimple-grid-col--4">
+
+                        <div class="siimple-box siimple--bg-error">
+                            <h2 id="helpfulLinks" text-align="center">Helpful Links:</h2>
+
+                            <div class="siimple-list" style="max-width:300px;">
+                                <div class="siimple-list-item"><a href="https://www.diynetwork.com/how-to" class="siimple-link"
+                                        target="_blank">DYI Network</a>
+                                </div>
+                                <div class="siimple-list-item"><a href="https://youtu.be/CRXCB_3gLok" class="siimple-link"
+                                        target="_blank">How to paint a room</a></div>
+                                <div class="siimple-list-item">
+                                    <a href="https://www.homeadvisor.com/?gclid=Cj0KCQjwuafdBRDmARIsAPpBmVWpGN13J0Xawj2mdP9hiXtDwuLNk3jbZiK4aUszOMcAA1bZ0MmVT1UaApaSEALw_wcB"
+                                        class="siimple-link" target="_blank">Home Advisor</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- -----------------------------------▼▼▼ Section 3 ▼▼▼---------------------------------------- -->
+
+                <h1 class="taskName" id="taskToShop"></h1>
+
+                <div id="ShopArea">
+                    <h2>Helpful Products
+                    <hr>
+                </div>
+                <div class="products" id="productArea">
+                </div>
+
+                <!-- ----------------------------------------▼▼▼ Javascript ▼▼▼-------------------------------------- -->
+
+                <script src="./assets/javascript/application.js"></script>
+
+
+    </body>
+
+</html>

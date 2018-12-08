@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Best Buy API</title>
+</head>
+
+<body>
+    <div id="search">
+        <form role="form">
+            <div class="form-group">
+                <!-- Here we enter the serch term  -->
+                <label for="search">Search Term:</label>
+                <input type="text" class="form-control" id="search-term">
+
+                <!-- Here we have our final submit button -->
+                <button type="submit" class="btn btn-default" id="run-search">
+                <i class="fa fa-search"></i> Search</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+    <div id="productArea">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="css/shave.js"></script>
+    <!-- <script src="dist/shve.js"></script> -->
+    <script type="text/javascript">
+
+        // queryParams = $("#search-term")
+        // .val()
+        // .trim();
+
+        //var queryURL = "https://api.bestbuy.com/v1/products(search="+queryParams+"&search=stainless&search=steel)?format=json&show=sku,name,longDescription,salePrice,image,addToCartUrl&apiKey=ALmkuUbT4AP1EGu1W3toKALf"
+       var queryURL = "https://api.bestbuy.com/v1/products(search=phones&search=stainless&search=steel)?format=json&show=sku,name,longDescription,salePrice,image,addToCartUrl&apiKey=ALmkuUbT4AP1EGu1W3toKALf"
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+
+            // var imageURL = response.products[0].image;
+            // var productImage = $("<img>");
+            // productImage.attr("src", imageURL);
+            // productImage.attr("alt", "ProductImage");
+
+            // var productName = $("<div>")
+            var responseArr = [];
+
+            for (var i = 0; i < response.products.length; i++) {
+                responseArr.push(response.products[i])
+                //console.log("Product Sku:- " + response.products[i].sku);
+
+            }
+            //console.log(responseArr);
+            // console.log("Product Sku:- " + response.products[0].sku);
+            // console.log("Product Name:- " + response.products[0].name);
+            // console.log("Product Long Description:- " + response.products[0].longDescription);
+            // console.log("Product Sale Price:- " + response.products[0].salePrice);
+            // console.log("Product Image:- " + response.products[0].image);
+            // console.log("Product URl:- " + response.products[0].addToCartUrl);
+
+            //code to create a string literal to display the products grouped. Retrieving the data from array which holds the responses fro API. 
+            for (var i = 0; i < 4; i++) {
+                var bigdiv = $("#productArea");
+                var productDiv = $(`
+                    <div id="sku">SKU: ${response.products[i].sku} </div>
+                    <div id="name">Name: ${response.products[i].name} </div>
+                    <p class="description" >Description:-${response.products[i].longDescription} </p>
+                    <div id="Price">Price:- ${response.products[i].salePrice}</div>
+                    <div id="imageArea${i}"><img src="${response.products[i].image}" alt = "Product Image" height="42" width="42"></div>
+                    <div><button id="addcart${i}" type="button">Add to Cart</button></div>
+                `)
+
+                //Appends the each groped product into the main DIV("#productArea")
+                bigdiv.append(productDiv);
+                shave('p', 50);
+                var cartURL = responseArr[i].addToCartUrl;
+                document.getElementById("addcart" + i).onclick = function () {
+                    location.href = cartURL;
+                };
+            }
+            
+        });
+        //shave('p', 10);
+    </script>
+</body>
+
+</html>
