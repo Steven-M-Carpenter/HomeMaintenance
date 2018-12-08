@@ -29,4 +29,4 @@ This program uses HTML5, CSS, the Siimple CSS framework, Jquery, AJAX, Firebase 
 ---
 Leverage the link below to access this project.
 
-[Home Maintenance Reminder](https://github.com/Steven-M-Carpenter/HomeMaintenance/)
+[Home Maintenance Reminder](https://steven-m-carpenter.github.io/HomeMaintenance/)
